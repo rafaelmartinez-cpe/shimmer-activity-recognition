@@ -23,15 +23,20 @@ The best single feature ended up being the standard deviation of the magnitude. 
 
 The windows overlap, so a random train/test split puts very similar windows on both sides, which probably makes the 98% look better than it would on new data. All the data also came from our own sessions, not new people. Next steps would be splitting by session or by person and adding the gyroscope to help with jumping vs running.
 
-`evaluate.py` is how we got the 98%. It does a random 75/25 split and 5 fold cross validation on the windows. The CSV data isn't included.
+`evaluate.py` is how we got the 98%. It does a random 75/25 split and 5 fold cross validation on the windows. The cross validation averaged about 94% but with a big spread between folds (some were a lot lower), which is another sign the 98% is on the optimistic side.
+
+## Data
+
+The `data/` folder has our actual recordings from April 27, 2026, one session per activity (about 2.5 minutes each at ~51 Hz). The jumping file is from the 4 class experiment and isn't used by the 3 class scripts.
 
 ## Running it
 
 ```bash
 pip install -r requirements.txt
 python imu_accel_only.py          # record a labeled session
-python evaluate.py                # accuracy, confusion matrix, cross validation
-python activity_classifier_live.py  # trains on the CSVs in the folder the first time, then runs live
+cd data
+python ../evaluate.py                # accuracy, confusion matrix, cross validation
+python ../activity_classifier_live.py  # trains on the CSVs in the folder the first time, then runs live
 ```
 
 Change `PORT` at the top of each script to whatever COM port your Shimmer shows up as.
