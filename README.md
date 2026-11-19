@@ -14,7 +14,7 @@ The best single feature ended up being the standard deviation of the magnitude. 
 
 ## Results
 
-- About 22,000 samples total, roughly 2 minutes per activity per session
+- About 22,000 samples total, one session of roughly 2.5 minutes per activity
 - 98% accuracy on a 25% held out test set (110 out of 112 windows)
 - Adding jumping as a 4th class dropped it to about 88% since jumping and running look really similar on an accelerometer, so we stuck with 3 classes
 - Live it picks up a change in activity within 1 to 2 seconds
